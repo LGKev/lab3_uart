@@ -1,0 +1,90 @@
+/*
+ * uart.c
+ *
+ *  Created on: Sep 24, 2017
+ *      Author: kevinKuwata1
+ */
+
+#include "uart.h"
+
+#include "msp.h"
+
+
+void UART_config(){
+/*  Steps for Setting up UART Table 22.3.1
+ *      Set UCSWRST
+ *      Initialize all registers with UCSWRT = 1
+ *      Configure Ports
+ *      Clear UCSWST with software, aka clear that 1.
+ *      Enable interrupts for UCRxie and UCTxie
+ *
+ *
+ * Resets as all 0's so only the clock sources is the
+ *  that need to be changed will change.
+ *
+ *  "Frame parameters" means the parity, stop bits, etc. but cuz all reset as 0's
+ *  no worries.
+ * */
+
+//Set up pins.
+    //Pin 2 is the RX           pin 3 is the TX
+    //RX SETUP
+    P1SEL0 |= BIT2;
+    P1SEL1 &= ~BIT2;
+
+    //TX SETUP
+    P1SEL0 |= BIT3;
+    P1SEL1 &= ~BIT3;
+
+
+
+
+
+    // UART must be in reset mode to configure
+    EUSCI_A0->CTLW0 = EUSCI_A_CTLW0_SWRST; //reset by setting to 1.
+    EUSCI_A0->CTLW0 |= EUSCI_A_CTLW0_SSEL__SMCLK | UCRXEIE; //frame parameter , enable interrupt on the RX
+    //baud rate clock is 4 Mhz
+    //what register is UCBR? it needs to be set as 26 is that the word one?
+    EUSCI_A0->BRW = 9600; //baud rate
+
+
+    // UCOS16 = 1,          UCbRx = 26;              UCBRF = 0 ;              UCBRSx = 0xB6
+    EUSCI_A0->MCTLW|= (EUSCI_A_MCTLW_BRS_OFS + 0xB6) | (EUSCI_A_MCTLW_OS16); //from table 22.3.13
+
+
+
+    // CLEAR UCSWRST
+    EUSCI_A0->CTLW0 &= ~EUSCI_A_CTLW0_SWRST;
+
+}
+
+
+/*
+ *  Sends a single byte of data to the TX Buffer.
+ *  Blocking, waits until the UCTXIFG flag is cleared.
+ * */
+void UART_send_n(uint8_t * data, uint32_t length);
+
+
+/*
+ *  Sends data from an array, until entire array sent.
+ *  Blocking, waits until the UCTXIFG flag is cleared.
+ *
+ * */
+void UART_send_byte(uint8_t data);
+
+
+/*
+ * Place Load data into Tx Buffer
+ * */
+void UART_putchar(uint8_t tx_data){
+//    while(EUSCI_A_CTLW0)      // check a flag, if set or not.
+  //  while(EUSCI_A_CTLW0);
+    EUSCI_A0->TXBUF = 30; //hoping 30 should be '0', for sure ascii
+}
+
+/*
+ *  Iterates through the array, puts into the Tx Buffer
+ * */
+void uart_putchar_n(uint8_t * data, uint32_t length);
+
