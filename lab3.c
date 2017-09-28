@@ -13,6 +13,7 @@ void configure_clocks(void){
     CS->KEY = 0x695A; //unlock 5.3.1
     CS->CTL0 = 0 ;
     CS->CTL0 |= CS_CTL0_DCOEN | CS_CTL0_DCORSEL_2;  //enable DCO, then mode 3 for 8 to 16 Mhz
+    CS->CTL0 |= 100111000; //and should be 4MHZ
 
         //we want the baud rate clock to be 4 Mhz
 
@@ -27,10 +28,11 @@ void configure_clocks(void){
     //uint32_t myConstant_FCAL = TLV->DCOIR_FCAL_RSEL04; // constant for F_CAL for equation
 
 
-
+    //not a typo definitely needs to be CLT1 and not CTL0
     //lets divide the SMCLK clock by some divisor to get the create the frequency
-    CS->CTL0 |= CS_CTL1_SELA__REFOCLK | CS_CTL1_SELS__DCOCLK | CS_CTL1_SELM__DCOCLK;
-    CS->CTL0 |= 010000101; //100111000; //200.5; bit 0 through 9.
+    CS->CTL1 |= CS_CTL1_SELA__REFOCLK | CS_CTL1_SELS__DCOCLK | CS_CTL1_SELM__DCOCLK;
+
+
 
     CS->KEY = 0; //lock
 }
