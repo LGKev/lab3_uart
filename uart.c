@@ -37,24 +37,36 @@ void UART_config(){
     P1SEL1 &= ~BIT3;
 
 
-
-
-
     // UART must be in reset mode to configure
-    EUSCI_A0->CTLW0 = EUSCI_A_CTLW0_SWRST; //reset by setting to 1.
-    EUSCI_A0->CTLW0 |= EUSCI_A_CTLW0_SSEL__SMCLK | UCRXEIE; //frame parameter , enable interrupt on the RX
+    EUSCI_A0->CTLW0 |= EUSCI_A_CTLW0_SWRST; //reset by setting to 1.
+
+
+    EUSCI_A0->IFG = 0b0;
+    EUSCI_A0->IE |= 0b01;//BIT1 | EUSCI_A_IFG_RXIFG; // set up interrupt enable for both Rx and Tx.
+
+
+
+
+    EUSCI_A0->CTLW0 |= EUSCI_A_CTLW0_SSEL__SMCLK; //frame parameter , enable interrupt on the RX
     //baud rate clock is 4 Mhz
     //what register is UCBR? it needs to be set as 26 is that the word one?
-    EUSCI_A0->BRW = 9600; //baud rate
+    EUSCI_A0->BRW = 26; //baud rate, so baud rate set at 26 with other settings will result in a rate of 9600
 
 
     // UCOS16 = 1,          UCbRx = 26;              UCBRF = 0 ;              UCBRSx = 0xB6
-    EUSCI_A0->MCTLW|= (EUSCI_A_MCTLW_BRS_OFS + 0xB6) | (EUSCI_A_MCTLW_OS16); //from table 22.3.13
+    EUSCI_A0->MCTLW|=  (EUSCI_A_MCTLW_OS16); //from table 22.3.13
 
+    EUSCI_A0->MCTLW|= ((0xB600)) ;//| (EUSCI_A_MCTLW_OS16); //from table 22.3.13
 
 
     // CLEAR UCSWRST
     EUSCI_A0->CTLW0 &= ~EUSCI_A_CTLW0_SWRST;
+
+    //set up interrupt
+       //clear all flags first
+       EUSCI_A0->IFG = 0b0;
+       EUSCI_A0->IE |= 0b10;//BIT1 | EUSCI_A_IFG_RXIFG; // set up interrupt enable for both Rx and Tx.
+
 
 }
 
@@ -79,8 +91,9 @@ void UART_send_byte(uint8_t data);
  * */
 void UART_putchar(uint8_t tx_data){
 //    while(EUSCI_A_CTLW0)      // check a flag, if set or not.
-  //  while(EUSCI_A_CTLW0);
-    EUSCI_A0->TXBUF = 30; //hoping 30 should be '0', for sure ascii
+    while(!EUSCI_A_IFG_TXIFG);
+    EUSCI_A0->TXBUF = tx_data; //hoping 30 should be '0', for sure ascii
+   // EUSCI_A_ifg
 }
 
 /*

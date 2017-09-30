@@ -13,7 +13,10 @@ void configure_clocks(void){
     CS->KEY = 0x695A; //unlock 5.3.1
     CS->CTL0 = 0 ;
     CS->CTL0 |= CS_CTL0_DCOEN | CS_CTL0_DCORSEL_2;  //enable DCO, then mode 3 for 8 to 16 Mhz
-    CS->CTL0 |= 100111000; //and should be 4MHZ
+    //CS->CTL0 |=0b1100111000; //and should be 4MHZ, got 4.5 MHZ, -200.5?
+   // CS->CTL0 |= 0b1011010100; //goal: 4MHZ, got:  4.016MHZ          @-300
+    CS->CTL0 |= 0b1011010001; //DCTO-303
+
 
         //we want the baud rate clock to be 4 Mhz
 
