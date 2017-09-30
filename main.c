@@ -15,18 +15,21 @@ void main(void)
     WDT_A->CTL = WDT_A_CTL_PW | WDT_A_CTL_HOLD;     // stop watchdog timer
 
 
-
     UART_config();
     configure_clocks(); //probably so change up
 
 
 
-
+        uint8_t letter = 0;
 
 	while(1){
-	    UART_putchar(65);
-	}
-}
+	   for(letter = 30; letter < 122; letter++){
+	    UART_putchar(letter);
+	    UART_putchar(32);//space
+	   }
+
+	    }
+    }
 
 
 void HSMCLK_OUT(){
