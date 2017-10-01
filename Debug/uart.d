@@ -11,6 +11,7 @@ uart.obj: /home/kk/ti/ccsv7/ccs_base/arm/include/msp432p401r_classic.h
 uart.obj: /home/kk/ti/ccsv7/ccs_base/arm/include/CMSIS/core_cm4.h
 uart.obj: /home/kk/ti/ccsv7/ccs_base/arm/include/CMSIS/cmsis_compiler.h
 uart.obj: /home/kk/ti/ccsv7/ccs_base/arm/include/system_msp432p401r.h
+uart.obj: ../lab3.h
 
 ../uart.c: 
 ../uart.h: 
@@ -23,3 +24,4 @@ uart.obj: /home/kk/ti/ccsv7/ccs_base/arm/include/system_msp432p401r.h
 /home/kk/ti/ccsv7/ccs_base/arm/include/CMSIS/core_cm4.h: 
 /home/kk/ti/ccsv7/ccs_base/arm/include/CMSIS/cmsis_compiler.h: 
 /home/kk/ti/ccsv7/ccs_base/arm/include/system_msp432p401r.h: 
+../lab3.h: 

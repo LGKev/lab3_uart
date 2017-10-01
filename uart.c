@@ -8,7 +8,7 @@
 #include "uart.h"
 
 #include "msp.h"
-
+#include "lab3.h"
 
 void UART_config(){
 /*  Steps for Setting up UART Table 22.3.1
@@ -65,7 +65,7 @@ void UART_config(){
     //set up interrupt
        //clear all flags first
        EUSCI_A0->IFG = 0;
-       EUSCI_A0->IE |= 0b10;//BIT1 | EUSCI_A_IFG_RXIFG; // set up interrupt enable for both Rx and Tx.
+       EUSCI_A0->IE |= UCRXIE | UCTXIE;//BIT1 | EUSCI_A_IFG_RXIFG; // set up interrupt enable for both Rx and Tx.
 
        NVIC_EnableIRQ(EUSCIA0_IRQn);
 
@@ -105,9 +105,16 @@ void uart_putchar_n(uint8_t * data, uint32_t length);
 
 /*Interrupt for UART Rx and TX IRQ */
 extern void EUSCIA0_IRQHandler(){
+    uint16_t delay;
+
+
+
     if(EUSCI_A0->IFG & EUSCI_A_IFG_RXIFG){
         //when a bit is received the RXIF flag is high.
-
+        P2OUT ^= BLUE_LED;
+               for(delay =0; delay<200; delay++);
+               P2OUT ^= BLUE_LED;
+               EUSCI_A0->IFG &= ~EUSCI_A_IFG_RXIFG;//clear the flag.
     }
     if(EUSCI_A0->IFG & EUSCI_A_IFG_TXIFG){
 

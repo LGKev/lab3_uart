@@ -12,6 +12,7 @@
  */
 void main(void)
 {
+
     WDT_A->CTL = WDT_A_CTL_PW | WDT_A_CTL_HOLD;     // stop watchdog timer
 
 
@@ -21,8 +22,10 @@ void main(void)
     P2SEL0 &= ~BLUE_LED;
     P2SEL1 &= ~BLUE_LED;
     P2DIR |= BLUE_LED; //output
-    P2DIR &= ~BLUE_LED;
+    P2OUT &= ~BLUE_LED;
 
+    //enable the interrupts for RX buffer
+    __enable_irq();
 
 #ifdef UART_TX_TEST
     uint8_t letter = 0;
