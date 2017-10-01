@@ -64,9 +64,10 @@ void UART_config(){
 
     //set up interrupt
        //clear all flags first
-       EUSCI_A0->IFG = 0b0;
+       EUSCI_A0->IFG = 0;
        EUSCI_A0->IE |= 0b10;//BIT1 | EUSCI_A_IFG_RXIFG; // set up interrupt enable for both Rx and Tx.
 
+       NVIC_EnableIRQ(EUSCIA0_IRQn);
 
 }
 
@@ -100,4 +101,16 @@ void UART_putchar(uint8_t tx_data){
  *  Iterates through the array, puts into the Tx Buffer
  * */
 void uart_putchar_n(uint8_t * data, uint32_t length);
+
+
+/*Interrupt for UART Rx and TX IRQ */
+extern void EUSCIA0_IRQHandler(){
+    if(EUSCI_A0->IFG & EUSCI_A_IFG_RXIFG){
+        //when a bit is received the RXIF flag is high.
+
+    }
+    if(EUSCI_A0->IFG & EUSCI_A_IFG_TXIFG){
+
+    }
+}
 

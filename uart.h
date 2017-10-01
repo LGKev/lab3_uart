@@ -38,7 +38,7 @@ void UART_send_byte(uint8_t data);
 
 
 /*
- * Place Load data into Tx Buffer
+ * Place  data into Tx Buffer
  * */
 void UART_putchar(uint8_t tx_data);
 

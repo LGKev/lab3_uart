@@ -18,10 +18,14 @@ void main(void)
     UART_config();
     configure_clocks(); //probably so change up
 
+    P2SEL0 &= ~BLUE_LED;
+    P2SEL1 &= ~BLUE_LED;
+    P2DIR |= BLUE_LED; //output
+    P2DIR &= ~BLUE_LED;
 
 
-        uint8_t letter = 0;
-
+#ifdef UART_TX_TEST
+    uint8_t letter = 0;
 	while(1){
 	   for(letter = 30; letter < 122; letter++){
 	    UART_putchar(letter);
@@ -29,7 +33,11 @@ void main(void)
 	   }
 
 	    }
-    }
+#endif
+
+
+while(1);
+}
 
 
 void HSMCLK_OUT(){
