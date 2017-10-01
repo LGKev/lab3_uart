@@ -19,13 +19,20 @@ void main(void)
     UART_config();
     configure_clocks(); //probably so change up
 
+
+
+
+    //enable the interrupts for RX buffer
+    __enable_irq();
+
+
+#ifdef UART_RX_TEST
     P2SEL0 &= ~BLUE_LED;
     P2SEL1 &= ~BLUE_LED;
     P2DIR |= BLUE_LED; //output
     P2OUT &= ~BLUE_LED;
+#endif
 
-    //enable the interrupts for RX buffer
-    __enable_irq();
 
 #ifdef UART_TX_TEST
     uint8_t letter = 0;

@@ -100,7 +100,16 @@ void UART_putchar(uint8_t tx_data){
 /*
  *  Iterates through the array, puts into the Tx Buffer
  * */
-void uart_putchar_n(uint8_t * data, uint32_t length);
+void uart_putchar_n(uint8_t * data, uint32_t length){
+    //data is an array! so you can use pointer math to iterate through
+   uint8_t index =0;
+   for(index = 0; index <length; index++){
+       UART_putchar(*data);
+       data++;
+   }
+
+
+}
 
 
 /*Interrupt for UART Rx and TX IRQ */
