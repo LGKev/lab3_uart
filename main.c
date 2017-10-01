@@ -25,6 +25,22 @@ void main(void)
     //enable the interrupts for RX buffer
     __enable_irq();
 
+#ifdef UART_PUTCHAR_TEST
+
+    uint8_t myData[3] = {98,99,100};
+    uint8_t mySentence[13]={72,101, 108,108, 111, 32, 87,111,114, 108, 100,33,33};//Hello World!! = 13
+
+    while(1){
+        UART_putchar(10); //new line
+     uart_putchar_n(mySentence, 13);
+
+//        uart_putchar_n(myData, 3);
+        UART_putchar(10); //new line
+
+    }
+
+#endif
+
 
 #ifdef UART_RX_TEST
     P2SEL0 &= ~BLUE_LED;

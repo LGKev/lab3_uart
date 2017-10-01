@@ -91,7 +91,6 @@ void UART_send_byte(uint8_t data);
  * Place Load data into Tx Buffer
  * */
 void UART_putchar(uint8_t tx_data){
-//    while(EUSCI_A_CTLW0)      // check a flag, if set or not.
     while(!EUSCI_A_IFG_TXIFG);
     EUSCI_A0->TXBUF = tx_data; //hoping 30 should be '0', for sure ascii
    // EUSCI_A_ifg
@@ -126,7 +125,8 @@ extern void EUSCIA0_IRQHandler(){
                EUSCI_A0->IFG &= ~EUSCI_A_IFG_RXIFG;//clear the flag.
     }
     if(EUSCI_A0->IFG & EUSCI_A_IFG_TXIFG){
-
+        EUSCI_A0->IFG &= ~EUSCI_A_IFG_TXIFG; //not sure if this is the
+        //correct place but it appears the flag is never being cleared.
     }
 }
 

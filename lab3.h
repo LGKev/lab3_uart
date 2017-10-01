@@ -16,6 +16,8 @@
 
 #define UART_RX_TEST        // only tests the RX interrupt and mask.
 
+#define UART_PUTCHAR_TEST       // only tests to loop sending data as a byte.
+
 /*
  * Clock DCO is being modified to be used with UART.
  * Clock determines baud rate accuracy.
