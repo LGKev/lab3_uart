@@ -103,7 +103,7 @@ void uart_putchar_n(uint8_t * data, uint32_t length){
     //data is an array! so you can use pointer math to iterate through
    uint8_t index =0;
    uint16_t txDelay =0;
-   for(index = 0; index <length; index++){
+   for(index = 0; index <length ; index++){
        UART_putchar(*data);
        data++;
       // for(txDelay = 0; txDelay < 300; txDelay++);
@@ -129,6 +129,7 @@ extern void EUSCIA0_IRQHandler(){
     if(EUSCI_A0->IFG & EUSCI_A_IFG_TXIFG){
         EUSCI_A0->IFG &= ~EUSCI_A_IFG_TXIFG; //not sure if this is the
         //correct place but it appears the flag is never being cleared.
+        EUSCI_A0->TXBUF =0;//clear it?
     }
 }
 

@@ -10,6 +10,8 @@
 /**
  * main.c
  */
+ char const myShortTest[9]={"Test123\n"};
+
 void main(void)
 {
 
@@ -28,14 +30,19 @@ void main(void)
 #ifdef UART_PUTCHAR_TEST
 
     uint8_t myData[3] = {98,99,100};
-    uint8_t mySentence[13]={72,101, 108,108, 111, 32, 87,111,114, 108, 100,33,33};//Hello World!! = 13
+    uint8_t mySentence[13]={72,101, 108,108, 111, 32, 87,111,114, 108, 100,33,33 };//Hello World!! = 13
+    //uint8_t test[1] ={01010101};
 
     while(1){
-        UART_putchar(10); //new line
-     uart_putchar_n(mySentence, 13);
+       // UART_putchar(10); //new line
+    // uart_putchar_n(mySentence, 13);
+//     uart_putchar_n(myShortTest,9);
+      // uart_putchar_n(myData, 3);
+       // UART_putchar(10); //new line
+     //
+    //uart_putchar_n(test, 1);
 
-//        uart_putchar_n(myData, 3);
-        UART_putchar(10); //new line
+        UART_putchar(0xAA);
 
     }
 
