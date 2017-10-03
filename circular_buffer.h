@@ -4,12 +4,14 @@
  *  Created on: Sep 24, 2017
  *      Author: kevinKuwata1
  */
-#ifdef working
+#ifdef WORKING_Circ
 #include <stdint.h>
 
 #ifndef CIRCULAR_BUFFER_H_
 #define CIRCULAR_BUFFER_H_
 
+
+#define MAX_CICULAR_BUFFER_SIZE         (256)   //this is the maximum size of the circular buffer, specified by the writeup.
 
 typedef struct {
     uint8_t * buffer;                       // pointer to the base of the buffer in heap
@@ -23,19 +25,19 @@ typedef struct {
 /*
  *  Initialize the circular buffer type
  * */
-CB_Status CB_initialize_buffer(CircBuf_t * buf, uint32_t length);
+CircBuf_t * CB_initialize_buffer(CircBuf_t * buf, uint32_t length);
 
 /*
  * Clears the elements in the buffer. Sets num_items = 0.
  * */
-CB_Status CB_clear_buffer(CircBuf_t * buf);
+void CB_clear_buffer(CircBuf_t * buf);
 
 
 /*
  * Clears the buffer, and then deletes the reference to the pointer to the base of the buffer.
  * Necessary to prevent memory leaks.
  * */
-CB_Status CB_delete_buffer(CircBuf_t * buf);
+uint8_t CB_delete_buffer(CircBuf_t * buf);
 
 /*
  * Returns if the buffer is full.
@@ -55,13 +57,16 @@ int8_t CB_is_buffer_empty(CircBuf_t * buf);
 /*
  * Adds item to the buffer, adds item to the current tail, then increments tail one position.
  * Checks to see buffer isn't full
+ * return 1 for success, -1 for error.
  * */
-CB_Status CB_add_item_to_buffer(CircBuf_t * buf, uint8_t item);
+uint8_t CB_add_item_to_buffer(CircBuf_t * buf, uint8_t item);
 
 /* Removes Item from the HEAD of the buffer, decrements the item number
  * checks to see if buffer is empty.
+ * returns: the item just removed
+ *
  * */
-CB_Status CB_remove_item_from_buffer(CircBuf_t * buf);
+CircBuf_t * CB_remove_item_from_buffer(CircBuf_t * buf);
 
 #endif /* CIRCULAR_BUFFER_H_ */
 #endif
