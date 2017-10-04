@@ -11,6 +11,8 @@ main.obj: /home/kk/ti/ccsv7/ccs_base/arm/include/CMSIS/core_cm4.h
 main.obj: /home/kk/ti/ccsv7/ccs_base/arm/include/CMSIS/cmsis_compiler.h
 main.obj: /home/kk/ti/ccsv7/ccs_base/arm/include/system_msp432p401r.h
 main.obj: ../uart.h
+main.obj: /home/kk/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.3.LTS/include/stdlib.h
+main.obj: /home/kk/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.3.LTS/include/linkage.h
 main.obj: ../circular_buffer.h
 main.obj: ../lab3.h
 
@@ -25,5 +27,7 @@ main.obj: ../lab3.h
 /home/kk/ti/ccsv7/ccs_base/arm/include/CMSIS/cmsis_compiler.h: 
 /home/kk/ti/ccsv7/ccs_base/arm/include/system_msp432p401r.h: 
 ../uart.h: 
+/home/kk/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.3.LTS/include/stdlib.h: 
+/home/kk/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.3.LTS/include/linkage.h: 
 ../circular_buffer.h: 
 ../lab3.h: 
