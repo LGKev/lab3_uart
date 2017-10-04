@@ -4,17 +4,13 @@
  *  Created on: Sep 24, 2017
  *      Author: kevinKuwata1
  */
-#ifdef WORKING_Circ
-#include <stdint.h>
+//#ifdef WORKING_Circ
+//#include <stdint.h>
 
 #ifndef CIRCULAR_BUFFER_H_
 #define CIRCULAR_BUFFER_H_
 
-
 #define MAX_CICULAR_BUFFER_SIZE         (256)   //this is the maximum size of the circular buffer, specified by the writeup.
-
-
-
 
 typedef struct{
     uint8_t * buffer;                       // pointer to the base of the buffer in heap
@@ -73,4 +69,4 @@ uint8_t CB_add_item_to_buffer(CircBuf_t * buf, uint8_t item);
 CircBuf_t * CB_remove_item_from_buffer(CircBuf_t * buf);
 
 #endif /* CIRCULAR_BUFFER_H_ */
-#endif
+//#endif

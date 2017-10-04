@@ -18,7 +18,7 @@
 
 #define UART_PUTCHAR_TEST       // only tests to loop sending data as a byte.
 
-#define WORKING_Circ //for the setupt for circularBuffer
+#define WORKING_Circ
 
 /*
  * Clock DCO is being modified to be used with UART.
