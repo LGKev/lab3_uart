@@ -31,10 +31,11 @@ void CB_initialize_buffer(CircBuf_t * buf, uint32_t length){
 
 
 
-        buf->head = buf;
-        buf->tail = buf;
         buf->num_items = 0;
         buf->tailPosition =0;
+
+        buf->head = buf;
+        buf->tail = buf;
 
 
 }

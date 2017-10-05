@@ -14,26 +14,23 @@
  char const myShortTest[9]={"Test123\n"};
 
 
- CircBuf_t * myBufferPTR;
 
-
-
-
-
+//absolutely key, you need static or it won't work.
+ static CircBuf_t *  myBufferPTR;
 
 
 void main(void)
 {
 
 
-
     WDT_A->CTL = WDT_A_CTL_PW | WDT_A_CTL_HOLD;     // stop watchdog timer
-
-
     UART_config();
     configure_clocks(); //probably so change up
 
+    CB_initialize_buffer(myBufferPTR, 10);
+    myBufferPTR->num_items = 23;
 
+    uint8_t error = CB_add_item_to_buffer(myBufferPTR, 67);
 
 
     //enable the interrupts for RX buffer
@@ -47,8 +44,6 @@ void main(void)
 
 
 
-    CB_initialize_buffer(myBufferPTR, 10);
-    uint8_t error = CB_add_item_to_buffer(myBufferPTR, 67);
 
 
     while(1){
