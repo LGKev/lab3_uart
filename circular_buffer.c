@@ -10,7 +10,6 @@
 
 
 
-#ifdef WORKING_Circ
 
 #include "circular_buffer.h"
 
@@ -26,19 +25,18 @@
  * */
 void CB_initialize_buffer(CircBuf_t * buf, uint32_t length){
     //good practice to check if pointer exists
-    if(!buf){ //this is equivalent to if(buf != NULL)
-    buf = (CircBuf_t *) malloc(length);
-    if(!buf){//succesfful malloc?
-        buf->head = buf;
-            buf->tail = buf;
-            buf->num_items = 0;
-            buf->tailPosition =0;
-    }
+//    if(buf != NULL){ //this is equivalent to if(buf != NULL)
 
-    }
-    else{
-        //error handling
-    }
+        buf = (CircBuf_t *) malloc(length*sizeof(uint8_t));
+
+
+
+        buf->head = buf;
+        buf->tail = buf;
+        buf->num_items = 0;
+        buf->tailPosition =0;
+
+
 }
 
 /*
@@ -103,11 +101,11 @@ int8_t CB_is_buffer_full(CircBuf_t * buf){
  * */
 int8_t CB_is_buffer_empty(CircBuf_t * buf){
     if(!buf){
-        if(buf->length == 0){
-                return 1;
+        if(buf->num_items == 0){
+                return 0;
             }
             else{
-                return 0; //this way we can check that if(CB_is_BUFFER_EMPTY(buf)) and it will return 1 if true.
+                return 1; //this way we can check that if(CB_is_BUFFER_EMPTY(buf)) and it will return 1 if true.
             }
     }
     return -1; // error
@@ -198,4 +196,4 @@ CircBuf_t * CB_remove_item_from_buffer(CircBuf_t * buf){
 
 
 }
-#endif
+

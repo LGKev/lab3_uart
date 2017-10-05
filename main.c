@@ -24,10 +24,10 @@
 
 void main(void)
 {
-//    CircBuf_t *myBuffPTR;
+
+
 
     WDT_A->CTL = WDT_A_CTL_PW | WDT_A_CTL_HOLD;     // stop watchdog timer
-    CircBuf_t * myBuffPTR;
 
 
     UART_config();
@@ -47,7 +47,8 @@ void main(void)
 
 
 
-CB_initialize_buffer(myBuffPTR, 10);
+    CB_initialize_buffer(myBufferPTR, 10);
+    uint8_t error = CB_add_item_to_buffer(myBufferPTR, 67);
 
 
     while(1){
