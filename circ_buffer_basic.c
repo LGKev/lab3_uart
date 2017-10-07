@@ -5,6 +5,7 @@
  *      Author: kk
  */
 
+
 #include "circular_buffer.h"
 #include <stdlib.h>
 #include "lab3.h"
@@ -12,14 +13,14 @@
 
 
 void initBuffBasic(CircBuf_t **myBase, uint8_t _length){
-  CircBuf_t  *buffer = (CircBuf_t * )malloc(_length*sizeof(uint8_t));
+  uint8_t  *buffer = (uint8_t * )malloc(_length*sizeof(uint8_t));
 
           (*myBase) ->num_items =0;
           (*myBase) ->tailPosition = 0;
           (*myBase) ->length = _length;
-          (*myBase) ->head = &buffer;
-          (*myBase) ->tail = &buffer;
-          (*myBase) ->buffer = &buffer;
+          (*myBase) ->head = buffer;
+          (*myBase) ->tail = buffer;
+          (*myBase) ->buffer = buffer;
 
 
 
