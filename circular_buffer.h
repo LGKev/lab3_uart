@@ -19,8 +19,9 @@ typedef struct{
     volatile uint8_t * tail;                // Marks the end of buffer, where new things are added. so head only moves when we pop out. and tail moves when we add.
     volatile uint32_t  num_items;          // good to know how many items are in the buffer , so array may be 50 long, but only 3 spots are filled. we don't want to go from 4 to 50.
      uint32_t length;               // Max number of items that can be held
-    volatile uint16_t tailPosition;         //This will be useful to know if there was a loop around, if there was then we don't want tail to go past
+    volatile uint32_t tailPosition;         //This will be useful to know if there was a loop around, if there was then we don't want tail to go past
                                             //out of bounds so if tailPosition == 255 count, then move tail to buf. loop back.
+
 } CircBuf_t;
 
 

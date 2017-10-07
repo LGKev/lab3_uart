@@ -42,7 +42,7 @@ void add_To_Buffer(CircBuf_t **buf, uint8_t item);
  * Increment tail pointer
  * Decrements number of items
  * */
-uint8_t  remove_From_Buffer(CircBuf_t **buf);
+int8_t  remove_From_Buffer(CircBuf_t **buf);
 
 
 /*
@@ -50,14 +50,14 @@ uint8_t  remove_From_Buffer(CircBuf_t **buf);
  * number_of_items = ? = length
  * Returns 1 if full
  * */
-uint8_t is_Circ_Buf_Full(CircBuf_t **buf);
+int8_t is_Circ_Buf_Full(CircBuf_t **buf);
 
 /*
  * Checks size of current buffer
  * number_of_items = ? = 0
  * Returns 1 if Empty
  * */
-uint8_t is_Circ_Buf_Empty(CircBuf_t **buf);
+int8_t is_Circ_Buf_Empty(CircBuf_t **buf);
 
 /* Sets head, tail pointers to base
  *      Sets all pointers to have the value 0;

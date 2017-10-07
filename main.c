@@ -32,55 +32,32 @@ void main(void)
     configure_clocks(); //probably so change up
 
 
-    initialize_Circ_Buffer(&myBufferPTR, 2);
+    initialize_Circ_Buffer(&myBufferPTR, 10);
 
-    uint8_t empty = is_Circ_Buf_Empty(&myBufferPTR);
+//    uint8_t empty = is_Circ_Buf_Empty(&myBufferPTR);
+//
+//    int8_t emptyError = remove_From_Buffer(&myBufferPTR); //I expect a -1 for error
+//
+//    add_To_Buffer(&myBufferPTR, 54);
+//     empty = is_Circ_Buf_Empty(&myBufferPTR);
+//     uint8_t full = is_Circ_Buf_Full(&myBufferPTR);
+//
+//    add_To_Buffer(&myBufferPTR, 67);
+//     full = is_Circ_Buf_Full(&myBufferPTR);
+//
+//     add_To_Buffer(&myBufferPTR, 69);
+//
+//
+//    uint8_t value = remove_From_Buffer(&myBufferPTR);
+//     full = is_Circ_Buf_Full(&myBufferPTR);
 
-    add_To_Buffer(&myBufferPTR, 54);
-     empty = is_Circ_Buf_Empty(&myBufferPTR);
-     uint8_t full = is_Circ_Buf_Full(&myBufferPTR);
-
-    add_To_Buffer(&myBufferPTR, 67);
-     full = is_Circ_Buf_Full(&myBufferPTR);
-
-     add_To_Buffer(&myBufferPTR, 69);
-
-
-    uint8_t value = remove_From_Buffer(&myBufferPTR);
-     full = is_Circ_Buf_Full(&myBufferPTR);
-
-
-
-  //  CB_initialize_buffer(&myBufferPTR, 10);
-
-//    uint8_t error = CB_add_item_to_buffer(myBufferPTR, 67);
-
-
-    //enable the interrupts for RX buffer
     __enable_irq();
 
-#ifdef UART_PUTCHAR_TEST
 
-    uint8_t myData[3] = {98,99,100};
-    uint8_t mySentence[13]={72,101, 108,108, 111, 32, 87,111,114, 108, 100,33,33 };//Hello World!! = 13
-    //uint8_t test[1] ={01010101};
-
-
-
-
-
-    while(1){
-    }
-
-#endif
-
-
-#ifdef UART_RX_TEST
     P2SEL0 &= ~BLUE_LED;
     P2SEL1 &= ~BLUE_LED;
     P2DIR |= BLUE_LED; //output
     P2OUT &= ~BLUE_LED;
-#endif
 
 
 #ifdef UART_TX_TEST

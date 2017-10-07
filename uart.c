@@ -8,7 +8,10 @@
 #include "uart.h"
 #include "msp.h"
 #include "lab3.h"
+#include "circ_buffer_basic.h"
+#include "circular_buffer.h"
 
+    extern CircBuf_t * myBufferPTR;
 
 void UART_config(){
 /*  Steps for Setting up UART Table 22.3.1
@@ -127,7 +130,7 @@ extern void EUSCIA0_IRQHandler(){
                EUSCI_A0->IFG &= ~EUSCI_A_IFG_RXIFG;//clear the flag.
 
                //push into the buffer.
-               //add_To_Buffer(&myBufferPTR, EUSCI_A0->RXBUF);
+               add_To_Buffer(&myBufferPTR, EUSCI_A0->RXBUF);
     }
     if(EUSCI_A0->IFG & EUSCI_A_IFG_TXIFG){
         EUSCI_A0->IFG &= ~EUSCI_A_IFG_TXIFG; //not sure if this is the
