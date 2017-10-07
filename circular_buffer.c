@@ -17,6 +17,8 @@
 
 
 
+extern CircBuf_t * myBufferPTR;
+extern CircBuf_t ** pointerToCircBuffer;
 
 
 
@@ -30,8 +32,9 @@ void CB_initialize_buffer(CircBuf_t * buf, uint32_t length){
         buf = (CircBuf_t *) malloc(length*sizeof(uint8_t));
 
 
+       // buf->buffer = myBufferPTR;
 
-        buf->num_items = 0;
+       buf->num_items = 0;
         buf->tailPosition =0;
 
         buf->head = buf;
@@ -40,7 +43,7 @@ void CB_initialize_buffer(CircBuf_t * buf, uint32_t length){
 
 }
 
-/*
+/*extern
  * Clears the elements in the buffer. Sets num_items = 0.
  * */
 void CB_clear_buffer(CircBuf_t * buf){
@@ -119,7 +122,9 @@ int8_t CB_is_buffer_empty(CircBuf_t * buf){
  * */
 uint8_t CB_add_item_to_buffer(CircBuf_t * buf,  uint8_t item){
     //check if legit
-    if(!buf){
+
+
+
         //Case 1: Empty
         if(CB_is_buffer_empty(buf)){
             //just add the item to the head and move head
@@ -145,13 +150,11 @@ uint8_t CB_add_item_to_buffer(CircBuf_t * buf,  uint8_t item){
                 return 1;
             }
         }
+        return 1;
     }
-    else{
-        return -1; //error
-    }
-}
 
-/* Removes Item from the HEAD of the buffer, decrements the item number
+
+/* Removes Item from the tail of the buffer, decrements the item number
  * checks to see if buffer is empty.
  * */
 CircBuf_t * CB_remove_item_from_buffer(CircBuf_t * buf){

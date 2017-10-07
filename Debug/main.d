@@ -15,6 +15,8 @@ main.obj: /home/kk/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.3.LTS/include/stdlib.
 main.obj: /home/kk/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.3.LTS/include/linkage.h
 main.obj: ../circular_buffer.h
 main.obj: ../lab3.h
+main.obj: ../circ_buffer_basic.h
+main.obj: ../circular_buffer.h
 
 ../main.c: 
 /home/kk/ti/ccsv7/ccs_base/arm/include/msp.h: 
@@ -31,3 +33,5 @@ main.obj: ../lab3.h
 /home/kk/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.3.LTS/include/linkage.h: 
 ../circular_buffer.h: 
 ../lab3.h: 
+../circ_buffer_basic.h: 
+../circular_buffer.h: 

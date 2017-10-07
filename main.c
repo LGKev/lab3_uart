@@ -6,17 +6,21 @@
 #include "circular_buffer.h"
 #include "lab3.h"
 
+//delete later
+#include "circ_buffer_basic.h"
 
 /**
  * main.c
  */
 
- char const myShortTest[9]={"Test123\n"};
+ char  myShortTest[9]={"Test123\n"};
 
 
 
-//absolutely key, you need static or it won't work.
- static CircBuf_t *  myBufferPTR;
+  CircBuf_t * myBufferPTR;
+  CircBuf_t ** pointerToCircBuffer;
+
+
 
 
 void main(void)
@@ -27,10 +31,12 @@ void main(void)
     UART_config();
     configure_clocks(); //probably so change up
 
-    CB_initialize_buffer(myBufferPTR, 10);
-    myBufferPTR->num_items = 23;
 
-    uint8_t error = CB_add_item_to_buffer(myBufferPTR, 67);
+    initBuffBasic(&myBufferPTR, 20);
+    addBuffer(myBufferPTR, 54);
+  //  CB_initialize_buffer(&myBufferPTR, 10);
+
+//    uint8_t error = CB_add_item_to_buffer(myBufferPTR, 67);
 
 
     //enable the interrupts for RX buffer

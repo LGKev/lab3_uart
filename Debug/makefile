@@ -8,6 +8,7 @@ GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
+"./circ_buffer_basic.obj" \
 "./circular_buffer.obj" \
 "./lab3.obj" \
 "./main.obj" \
@@ -156,8 +157,8 @@ lab3_uart.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "circular_buffer.obj" "lab3.obj" "main.obj" "startup_msp432p401r_ccs.obj" "system_msp432p401r.obj" "uart.obj" 
-	-$(RM) "circular_buffer.d" "lab3.d" "main.d" "startup_msp432p401r_ccs.d" "system_msp432p401r.d" "uart.d" 
+	-$(RM) "circ_buffer_basic.obj" "circular_buffer.obj" "lab3.obj" "main.obj" "startup_msp432p401r_ccs.obj" "system_msp432p401r.obj" "uart.obj" 
+	-$(RM) "circ_buffer_basic.d" "circular_buffer.d" "lab3.d" "main.d" "startup_msp432p401r_ccs.d" "system_msp432p401r.d" "uart.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

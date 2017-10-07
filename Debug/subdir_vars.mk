@@ -7,6 +7,7 @@ CMD_SRCS += \
 ../msp432p401r.cmd 
 
 C_SRCS += \
+../circ_buffer_basic.c \
 ../circular_buffer.c \
 ../lab3.c \
 ../main.c \
@@ -15,6 +16,7 @@ C_SRCS += \
 ../uart.c 
 
 C_DEPS += \
+./circ_buffer_basic.d \
 ./circular_buffer.d \
 ./lab3.d \
 ./main.d \
@@ -23,6 +25,7 @@ C_DEPS += \
 ./uart.d 
 
 OBJS += \
+./circ_buffer_basic.obj \
 ./circular_buffer.obj \
 ./lab3.obj \
 ./main.obj \
@@ -31,6 +34,7 @@ OBJS += \
 ./uart.obj 
 
 OBJS__QUOTED += \
+"circ_buffer_basic.obj" \
 "circular_buffer.obj" \
 "lab3.obj" \
 "main.obj" \
@@ -39,6 +43,7 @@ OBJS__QUOTED += \
 "uart.obj" 
 
 C_DEPS__QUOTED += \
+"circ_buffer_basic.d" \
 "circular_buffer.d" \
 "lab3.d" \
 "main.d" \
@@ -47,6 +52,7 @@ C_DEPS__QUOTED += \
 "uart.d" 
 
 C_SRCS__QUOTED += \
+"../circ_buffer_basic.c" \
 "../circular_buffer.c" \
 "../lab3.c" \
 "../main.c" \
