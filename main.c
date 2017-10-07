@@ -15,10 +15,10 @@
 
  char  myShortTest[9]={"Test123\n"};
 
+  CircBuf_t myBuffer;
 
 
-  CircBuf_t * myBufferPTR;
-  CircBuf_t ** pointerToCircBuffer;
+  CircBuf_t * myBufferPTR = &myBuffer;
 
 
 
