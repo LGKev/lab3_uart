@@ -9,25 +9,35 @@
 #include <stdlib.h>
 #include "lab3.h"
 
-extern pointerToCircBuffer;
 
 
 void initBuffBasic(CircBuf_t **myBase, uint8_t _length){
-    myBase = (CircBuf_t * )malloc(_length*sizeof(uint8_t));
+  CircBuf_t  *buffer = (CircBuf_t * )malloc(_length*sizeof(uint8_t));
 
           (*myBase) ->num_items =0;
-          (*myBase) ->tailPosition = 34;
+          (*myBase) ->tailPosition = 0;
           (*myBase) ->length = _length;
-          (*myBase) ->head = *myBase;
-          (*myBase) ->tail = &myBase;
-          (*myBase) ->buffer = &myBase;
+          (*myBase) ->head = &buffer;
+          (*myBase) ->tail = &buffer;
+          (*myBase) ->buffer = &buffer;
 
 
-           pointerToCircBuffer = &myBase;
 
 }
 
 
-void addBuffer(CircBuf_t *buf, uint8_t item){
+void addBuffer(CircBuf_t **buf, uint8_t item){
+    (*buf)->num_items++;
+    *(*buf)->head = item; //* once to derefefernce doulbe pointer, then *again to deref head.
+    (*buf) ->head++;//move the head 1 spot.
 
+}
+
+uint8_t popValue(CircBuf_t ** buf){
+
+    uint8_t  oldTail = *(*buf)->tail;
+    (*buf)->num_items--;
+    (*buf)->tail++;
+    (*buf)->tailPosition++;
+            return oldTail;
 }

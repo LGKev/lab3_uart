@@ -33,7 +33,11 @@ void main(void)
 
 
     initBuffBasic(&myBufferPTR, 20);
-    addBuffer(myBufferPTR, 54);
+    addBuffer(&myBufferPTR, 54);
+    addBuffer(&myBufferPTR, 67);
+    uint8_t value = popValue(&myBufferPTR);
+
+
   //  CB_initialize_buffer(&myBufferPTR, 10);
 
 //    uint8_t error = CB_add_item_to_buffer(myBufferPTR, 67);

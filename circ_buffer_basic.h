@@ -13,8 +13,9 @@
 
 void initBuffBasic(CircBuf_t **buf, uint8_t _length);
 
-void addBuffer(CircBuf_t *buf, uint8_t item);
+void addBuffer(CircBuf_t **buf, uint8_t item);
 
+uint8_t  popValue(CircBuf_t **buf);
 
 
 #endif /* CIRC_BUFFER_BASIC_H_ */
