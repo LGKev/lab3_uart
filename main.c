@@ -32,10 +32,23 @@ void main(void)
     configure_clocks(); //probably so change up
 
 
-    initBuffBasic(&myBufferPTR, 20);
-    addBuffer(&myBufferPTR, 54);
-    addBuffer(&myBufferPTR, 67);
-    uint8_t value = popValue(&myBufferPTR);
+    initialize_Circ_Buffer(&myBufferPTR, 2);
+
+    uint8_t empty = is_Circ_Buf_Empty(&myBufferPTR);
+
+    add_To_Buffer(&myBufferPTR, 54);
+     empty = is_Circ_Buf_Empty(&myBufferPTR);
+     uint8_t full = is_Circ_Buf_Full(&myBufferPTR);
+
+    add_To_Buffer(&myBufferPTR, 67);
+     full = is_Circ_Buf_Full(&myBufferPTR);
+
+     add_To_Buffer(&myBufferPTR, 69);
+
+
+    uint8_t value = remove_From_Buffer(&myBufferPTR);
+     full = is_Circ_Buf_Full(&myBufferPTR);
+
 
 
   //  CB_initialize_buffer(&myBufferPTR, 10);

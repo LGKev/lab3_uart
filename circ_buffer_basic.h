@@ -10,12 +10,65 @@
 #ifndef CIRC_BUFFER_BASIC_H_
 #define CIRC_BUFFER_BASIC_H_
 
+//typedef struct{
+//    uint8_t * baseConst;                       // pointer to the base of the buffer in heap
+//    volatile uint8_t * head;                // Pointer to first item //start of buffer  // FIFO
+//    volatile uint8_t * tail;                // Marks the end of buffer, where new things are added. so head only moves when we pop out. and tail moves when we add.
+//    volatile uint32_t  num_items;          // good to know how many items are in the buffer , so array may be 50 long, but only 3 spots are filled. we don't want to go from 4 to 50.
+//     uint32_t length;               // Max number of items that can be held
+//    volatile uint16_t tailPosition;         //This will be useful to know if there was a loop around, if there was then we don't want tail to go past
+//                                            //out of bounds so if tailPosition == 255 count, then move tail to buf. loop back.
+//} CircBuf_t;
 
-void initBuffBasic(CircBuf_t **buf, uint8_t _length);
 
-void addBuffer(CircBuf_t **buf, uint8_t item);
+/*
+ * Initializes a circular buffer and stores it at the global CircBuf Pointer.
+ * Pass the address of the pointer
+ * Uses Malloc to create correct size
+ * */
+void initialize_Circ_Buffer(CircBuf_t **buf, uint8_t _length);
 
-uint8_t  popValue(CircBuf_t **buf);
+
+/*
+ * Adds an item to the HEAD of the circular Buffer
+ * Increments the number of items.
+ * */
+void add_To_Buffer(CircBuf_t **buf, uint8_t item);
+
+
+/*
+ * Removes an item from the Tail of the circular Buffer
+ * Increments tail position
+ * Increment tail pointer
+ * Decrements number of items
+ * */
+uint8_t  remove_From_Buffer(CircBuf_t **buf);
+
+
+/*
+ * Checks size of the current buffer
+ * number_of_items = ? = length
+ * Returns 1 if full
+ * */
+uint8_t is_Circ_Buf_Full(CircBuf_t **buf);
+
+/*
+ * Checks size of current buffer
+ * number_of_items = ? = 0
+ * Returns 1 if Empty
+ * */
+uint8_t is_Circ_Buf_Empty(CircBuf_t **buf);
+
+/* Sets head, tail pointers to base
+ *      Sets all pointers to have the value 0;
+ *      Sets number_of_items = 0;
+ * */
+uint8_t clear_Buffer(CircBuf_t **buf);
+
+/*
+ * Delete memory allocated with Free
+ * */
+uint8_t delete_Circ_Buffer(CircBuf_t **buf);
 
 
 #endif /* CIRC_BUFFER_BASIC_H_ */

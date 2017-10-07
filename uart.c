@@ -6,9 +6,9 @@
  */
 
 #include "uart.h"
-
 #include "msp.h"
 #include "lab3.h"
+
 
 void UART_config(){
 /*  Steps for Setting up UART Table 22.3.1
@@ -125,6 +125,9 @@ extern void EUSCIA0_IRQHandler(){
                for(delay =0; delay<200; delay++);
                P2OUT ^= BLUE_LED;
                EUSCI_A0->IFG &= ~EUSCI_A_IFG_RXIFG;//clear the flag.
+
+               //push into the buffer.
+               //add_To_Buffer(&myBufferPTR, EUSCI_A0->RXBUF);
     }
     if(EUSCI_A0->IFG & EUSCI_A_IFG_TXIFG){
         EUSCI_A0->IFG &= ~EUSCI_A_IFG_TXIFG; //not sure if this is the

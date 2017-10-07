@@ -183,7 +183,7 @@ CircBuf_t * CB_remove_item_from_buffer(CircBuf_t * buf){
                    popped_value = buf->tail;
                    if(buf->tailPosition == buf->length ){ // make length so that portable.//either 255 or 256 because of tailPosition++ when tail moves .
                        //must be at the end so move to head
-                       buf->tail = buf->buffer;
+                       buf->tail = buf->baseConst;
                        buf->tailPosition = 0;
                    }
                    return popped_value;

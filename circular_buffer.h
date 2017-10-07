@@ -14,7 +14,7 @@
 
 
 typedef struct{
-    uint8_t * buffer;                       // pointer to the base of the buffer in heap
+    uint8_t * baseConst;                       // pointer to the base of the buffer in heap
     volatile uint8_t * head;                // Pointer to first item //start of buffer  // FIFO
     volatile uint8_t * tail;                // Marks the end of buffer, where new things are added. so head only moves when we pop out. and tail moves when we add.
     volatile uint32_t  num_items;          // good to know how many items are in the buffer , so array may be 50 long, but only 3 spots are filled. we don't want to go from 4 to 50.
