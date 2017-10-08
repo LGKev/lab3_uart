@@ -15,6 +15,8 @@ extern uint8_t Calculate_Stats;
 void initialize_Circ_Buffer(CircBuf_t **myBase, uint8_t _length)
 {
 
+    //tests
+
     if (*myBase != NULL)
     {
         uint8_t *_buffer = (uint8_t *) malloc(_length * sizeof(uint8_t));
@@ -127,6 +129,11 @@ int8_t remove_From_Buffer(CircBuf_t ** buf)
     }
 }
 
+/*
+ *  Helper Functions
+ *
+ * */
+
 int8_t is_Circ_Buf_Full(CircBuf_t **buf)
 {
     if ((*buf)->num_items == (*buf)->length)
@@ -149,5 +156,9 @@ int8_t is_Circ_Buf_Empty(CircBuf_t **buf)
     {
         return 0;
     }
+}
+
+uint16_t currentSize(CircBuf_t **buf){
+    return (*buf)->num_items;
 }
 

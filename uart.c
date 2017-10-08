@@ -113,16 +113,12 @@ void uart_putchar_n(uint8_t * data, uint32_t length){
        data++;
       // for(txDelay = 0; txDelay < 300; txDelay++);
    }
-
-
 }
 
 
 /*Interrupt for UART Rx and TX IRQ */
 extern void EUSCIA0_IRQHandler(){
     uint16_t delay;
-
-
 
     if(EUSCI_A0->IFG & EUSCI_A_IFG_RXIFG){
         //when a bit is received the RXIF flag is high.
@@ -132,11 +128,21 @@ extern void EUSCIA0_IRQHandler(){
                EUSCI_A0->IFG &= ~EUSCI_A_IFG_RXIFG;//clear the flag.
 
                //push into the buffer.
-               add_To_Buffer(&myBufferPTR, EUSCI_A0->RXBUF);
+               //add_To_Buffer(&myBufferPTR, EUSCI_A0->RXBUF);
+
+               //echo that shit back
+               //EUSCI_A0->TXBUF = remove_From_Buffer(&myBufferPTR);
+               EUSCI_A0->TXBUF = EUSCI_A0->RXBUF;
     }
+
+
     if(EUSCI_A0->IFG & EUSCI_A_IFG_TXIFG){
         EUSCI_A0->IFG &= ~EUSCI_A_IFG_TXIFG; //not sure if this is the
         //correct place but it appears the flag is never being cleared.
+<<<<<<< HEAD
+=======
+       // EUSCI_A0->TXBUF =0;//clear it?
+>>>>>>> 0327730c222a51ab4bdb1d0a0b20c8dcd165ac84
     }
 }
 

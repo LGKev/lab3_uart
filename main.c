@@ -16,16 +16,18 @@
  char  myShortTest[9]={"Test123\n"};
 
   CircBuf_t myBuffer;
-
-
   CircBuf_t * myBufferPTR = &myBuffer;
 
+<<<<<<< HEAD
   uint8_t zoid[17] = {87,104,121,32,78,111,116,32,90,111,105,100,98,101,114,103,63};
 
   uint8_t Calculate_Stats = 0; // set to 1, either full or enter pressed.
 
 
   uint8_t count[5]={0,0,0,0,0};
+=======
+void create_Test_Buffer();
+>>>>>>> 0327730c222a51ab4bdb1d0a0b20c8dcd165ac84
 
 
 void main(void)
@@ -46,7 +48,12 @@ void main(void)
     configure_clocks(); //probably so change up
 
 
+<<<<<<< HEAD
     initialize_Circ_Buffer(&myBufferPTR, 15);
+=======
+    initialize_Circ_Buffer(&myBufferPTR, 20);
+    //create_Test_Buffer();
+>>>>>>> 0327730c222a51ab4bdb1d0a0b20c8dcd165ac84
 
 
     __enable_irq();
@@ -141,4 +148,13 @@ void HSMCLK_OUT(){
     P4DIR |= BIT4;
 
 
+}
+
+
+void create_Test_Buffer(){
+    uint8_t array[30];
+    uint8_t index =0;
+    for(index=0; index< 30; index++){
+        add_To_Buffer(&myBufferPTR, index);
+    }
 }
