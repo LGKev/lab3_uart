@@ -111,16 +111,12 @@ void uart_putchar_n(uint8_t * data, uint32_t length){
        data++;
       // for(txDelay = 0; txDelay < 300; txDelay++);
    }
-
-
 }
 
 
 /*Interrupt for UART Rx and TX IRQ */
 extern void EUSCIA0_IRQHandler(){
     uint16_t delay;
-
-
 
     if(EUSCI_A0->IFG & EUSCI_A_IFG_RXIFG){
         //when a bit is received the RXIF flag is high.

@@ -12,6 +12,8 @@
 void initialize_Circ_Buffer(CircBuf_t **myBase, uint8_t _length)
 {
 
+    //tests
+
     if (*myBase != NULL)
     {
         uint8_t *_buffer = (uint8_t *) malloc(_length * sizeof(uint8_t));
