@@ -9,6 +9,9 @@
 #include <stdlib.h>
 #include "lab3.h"
 
+extern uint8_t Calculate_Stats;
+
+
 void initialize_Circ_Buffer(CircBuf_t **myBase, uint8_t _length)
 {
 
@@ -40,6 +43,12 @@ void add_To_Buffer(CircBuf_t **buf, uint8_t item)
 {
     if (*buf != NULL)
     {
+        //Check to see if enter or full, if so set the CalculateStats flag to 1.
+        if(item == 10){
+            Calculate_Stats = 1;
+        }
+
+
         if (is_Circ_Buf_Empty(buf))
         {
             //Case 1: Empty
@@ -68,6 +77,9 @@ void add_To_Buffer(CircBuf_t **buf, uint8_t item)
                 return;
             }
         }
+       if(is_Circ_Buf_Full(buf)){
+           Calculate_Stats = 1;
+       }
     }
 }
 

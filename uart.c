@@ -12,6 +12,7 @@
 #include "circular_buffer.h"
 
     extern CircBuf_t * myBufferPTR;
+    extern count[5];
 
 void UART_config(){
 /*  Steps for Setting up UART Table 22.3.1
@@ -94,8 +95,8 @@ void UART_send_byte(uint8_t data);
  * Place Load data into Tx Buffer
  * */
 void UART_putchar(uint8_t tx_data){
-    //while((EUSCI_A0->IFG & EUSCI_A_IFG_TXIFG));//== 0
-    while(EUSCI_A0->STATW & EUSCI_A_STATW_BUSY);
+   while((EUSCI_A0->IFG & EUSCI_A_IFG_TXIFG));
+   // while(EUSCI_A0->STATW & EUSCI_A_STATW_BUSY);
     EUSCI_A0->TXBUF = tx_data; //hoping 30 should be '0', for sure ascii
    // EUSCI_A_ifg
 }
@@ -136,7 +137,6 @@ extern void EUSCIA0_IRQHandler(){
     if(EUSCI_A0->IFG & EUSCI_A_IFG_TXIFG){
         EUSCI_A0->IFG &= ~EUSCI_A_IFG_TXIFG; //not sure if this is the
         //correct place but it appears the flag is never being cleared.
-        EUSCI_A0->TXBUF =0;//clear it?
     }
 }
 
