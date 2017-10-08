@@ -14,6 +14,7 @@ circ_buffer_basic.obj: /home/kk/ti/ccsv7/ccs_base/arm/include/msp432p401r_classi
 circ_buffer_basic.obj: /home/kk/ti/ccsv7/ccs_base/arm/include/CMSIS/core_cm4.h
 circ_buffer_basic.obj: /home/kk/ti/ccsv7/ccs_base/arm/include/CMSIS/cmsis_compiler.h
 circ_buffer_basic.obj: /home/kk/ti/ccsv7/ccs_base/arm/include/system_msp432p401r.h
+circ_buffer_basic.obj: ../uart.h
 
 ../circ_buffer_basic.c: 
 ../circular_buffer.h: 
@@ -29,3 +30,4 @@ circ_buffer_basic.obj: /home/kk/ti/ccsv7/ccs_base/arm/include/system_msp432p401r
 /home/kk/ti/ccsv7/ccs_base/arm/include/CMSIS/core_cm4.h: 
 /home/kk/ti/ccsv7/ccs_base/arm/include/CMSIS/cmsis_compiler.h: 
 /home/kk/ti/ccsv7/ccs_base/arm/include/system_msp432p401r.h: 
+../uart.h: 

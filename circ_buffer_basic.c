@@ -8,6 +8,7 @@
 #include "circular_buffer.h"
 #include <stdlib.h>
 #include "lab3.h"
+#include "uart.h"
 
 extern uint8_t Calculate_Stats;
 
@@ -165,13 +166,15 @@ void print_Circ_Buffer(CircBuf_t **buf){
     uint8_t data_just_read = *oldTail;
 
 //Case 1: Tail before Head, no loop around
-    for(items_Printed=0; items_Printed < current_Circ_Buffer_Size(buf); items_Printed++ ){
+    for(items_Printed=0; items_Printed < (*buf)->num_items; items_Printed++ ){
 
         //Case 2: need to figure out what happens when we loop around.
         uint8_t data_just_read = *oldTail;
         UART_putchar(data_just_read);
         oldTail++;
         }
+
+    //:TODO add a newline
 
 }
 
