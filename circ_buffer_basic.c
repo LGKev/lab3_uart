@@ -115,6 +115,11 @@ int8_t remove_From_Buffer(CircBuf_t ** buf)
     }
 }
 
+/*
+ *  Helper Functions
+ *
+ * */
+
 int8_t is_Circ_Buf_Full(CircBuf_t **buf)
 {
     if ((*buf)->num_items == (*buf)->length)
@@ -137,5 +142,9 @@ int8_t is_Circ_Buf_Empty(CircBuf_t **buf)
     {
         return 0;
     }
+}
+
+uint16_t currentSize(CircBuf_t **buf){
+    return (*buf)->num_items;
 }
 

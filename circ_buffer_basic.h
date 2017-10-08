@@ -71,4 +71,11 @@ uint8_t clear_Buffer(CircBuf_t **buf);
 uint8_t delete_Circ_Buffer(CircBuf_t **buf);
 
 
+
+/* Helper function
+ * Returns the current size of the circular buffer.
+ * */
+uint16_t currentSize(CircBuf_t **buf);
+
+
 #endif /* CIRC_BUFFER_BASIC_H_ */

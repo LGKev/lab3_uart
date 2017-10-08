@@ -16,11 +16,9 @@
  char  myShortTest[9]={"Test123\n"};
 
   CircBuf_t myBuffer;
-
-
   CircBuf_t * myBufferPTR = &myBuffer;
 
-
+void create_Test_Buffer();
 
 
 void main(void)
@@ -32,24 +30,9 @@ void main(void)
     configure_clocks(); //probably so change up
 
 
-    initialize_Circ_Buffer(&myBufferPTR, 10);
+    initialize_Circ_Buffer(&myBufferPTR, 20);
+    //create_Test_Buffer();
 
-//    uint8_t empty = is_Circ_Buf_Empty(&myBufferPTR);
-//
-//    int8_t emptyError = remove_From_Buffer(&myBufferPTR); //I expect a -1 for error
-//
-//    add_To_Buffer(&myBufferPTR, 54);
-//     empty = is_Circ_Buf_Empty(&myBufferPTR);
-//     uint8_t full = is_Circ_Buf_Full(&myBufferPTR);
-//
-//    add_To_Buffer(&myBufferPTR, 67);
-//     full = is_Circ_Buf_Full(&myBufferPTR);
-//
-//     add_To_Buffer(&myBufferPTR, 69);
-//
-//
-//    uint8_t value = remove_From_Buffer(&myBufferPTR);
-//     full = is_Circ_Buf_Full(&myBufferPTR);
 
     __enable_irq();
 
@@ -86,4 +69,13 @@ void HSMCLK_OUT(){
     P4DIR |= BIT4;
 
 
+}
+
+
+void create_Test_Buffer(){
+    uint8_t array[30];
+    uint8_t index =0;
+    for(index=0; index< 30; index++){
+        add_To_Buffer(&myBufferPTR, index);
+    }
 }
