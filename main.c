@@ -20,7 +20,7 @@
 
   CircBuf_t * myBufferPTR = &myBuffer;
 
-
+  uint8_t zoid[17] = {87,104,121,32,78,111,116,32,90,111,105,100,98,101,114,103,63};
 
 
 void main(void)
