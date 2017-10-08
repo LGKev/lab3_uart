@@ -86,9 +86,9 @@ void main(void)
 
 	/*stats*/
 
-//while(1){
-//	if(Calculate_Stats == 1){
-//	    uint8_t number_of_item = myBufferPTR -> num_items;
+while(1){
+	if(Calculate_Stats == 1){
+	    uint8_t number_of_item = myBufferPTR -> num_items;
 //	     for ( i=0; i< number_of_item; i++){
 //	         data = remove_From_Buffer(&myBufferPTR);
 //	         if(64<data & data<91 | 96<data & data <123){
@@ -114,18 +114,18 @@ void main(void)
 //	     count[3] = count_white_space+ Ascii_num_offset;
 //	     count[4]= count_other_character+ Ascii_num_offset;
 //
-//	     uint8_t index =0;
-//
-//	     for(index = 0; index < 5; index++){
-//	         UART_putchar(count[index]);
-//	     }
-//
-//
-//	     Calculate_Stats = 0;
-//	}
-//}
-//
-//
+	     uint8_t index =0;
+
+	     for(index = 0; index < 5; index++){
+	         UART_putchar(count[index]);
+	     }
+
+
+	     Calculate_Stats = 0;
+	}
+}
+
+
 
 
 }
