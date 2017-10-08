@@ -128,11 +128,13 @@ extern void EUSCIA0_IRQHandler(){
                EUSCI_A0->IFG &= ~EUSCI_A_IFG_RXIFG;//clear the flag.
 
                //push into the buffer.
-               //add_To_Buffer(&myBufferPTR, EUSCI_A0->RXBUF);
+               add_To_Buffer(&myBufferPTR, EUSCI_A0->RXBUF);
 
                //echo that shit back
                //EUSCI_A0->TXBUF = remove_From_Buffer(&myBufferPTR);
+#ifdef ECHO_TEST
                EUSCI_A0->TXBUF = EUSCI_A0->RXBUF;
+#endif
     }
 
 
