@@ -139,10 +139,6 @@ extern void EUSCIA0_IRQHandler(){
     if(EUSCI_A0->IFG & EUSCI_A_IFG_TXIFG){
         EUSCI_A0->IFG &= ~EUSCI_A_IFG_TXIFG; //not sure if this is the
         //correct place but it appears the flag is never being cleared.
-<<<<<<< HEAD
-=======
-       // EUSCI_A0->TXBUF =0;//clear it?
->>>>>>> 0327730c222a51ab4bdb1d0a0b20c8dcd165ac84
     }
 }
 
