@@ -48,6 +48,7 @@ void add_To_Buffer(CircBuf_t **buf, uint8_t item)
         //Check to see if enter or full, if so set the CalculateStats flag to 1.
         if(item == 10){
             Calculate_Stats = 1;
+            return;
         }
 
 
@@ -81,6 +82,7 @@ void add_To_Buffer(CircBuf_t **buf, uint8_t item)
         }
        if(is_Circ_Buf_Full(buf)){
            Calculate_Stats = 1;
+           return;
        }
     }
 }
