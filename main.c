@@ -34,23 +34,6 @@ void main(void)
 
     initialize_Circ_Buffer(&myBufferPTR, 10);
 
-//    uint8_t empty = is_Circ_Buf_Empty(&myBufferPTR);
-//
-//    int8_t emptyError = remove_From_Buffer(&myBufferPTR); //I expect a -1 for error
-//
-//    add_To_Buffer(&myBufferPTR, 54);
-//     empty = is_Circ_Buf_Empty(&myBufferPTR);
-//     uint8_t full = is_Circ_Buf_Full(&myBufferPTR);
-//
-//    add_To_Buffer(&myBufferPTR, 67);
-//     full = is_Circ_Buf_Full(&myBufferPTR);
-//
-//     add_To_Buffer(&myBufferPTR, 69);
-//
-//
-//    uint8_t value = remove_From_Buffer(&myBufferPTR);
-//     full = is_Circ_Buf_Full(&myBufferPTR);
-
     __enable_irq();
 
 
@@ -71,6 +54,15 @@ void main(void)
 	    }
 #endif
 
+
+#ifdef ZOIDBERG_TEST
+	uint8_t letter = 0;
+	while(1){
+	for(letter = 0; letter < 17; letter++){
+	    UART_putchar(zoid[letter]);
+	}
+	}
+#endif
 
 while(1);
 }
