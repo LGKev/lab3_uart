@@ -44,7 +44,7 @@ void add_To_Buffer(CircBuf_t **buf, uint8_t item)
     if (*buf != NULL)
     {
         //Check to see if enter or full, if so set the CalculateStats flag to 1.
-        if(item == 10){
+        if(item == 10 || item == 13){
             Calculate_Stats = 1;
             return;
         }
@@ -151,4 +151,28 @@ int8_t is_Circ_Buf_Empty(CircBuf_t **buf)
         return 0;
     }
 }
+
+uint16_t current_Circ_Buffer_Size(CircBuf_t **buf){
+    if(!buf){
+        return (*buf)->num_items;
+    }
+    return -1;
+}
+
+void print_Circ_Buffer(CircBuf_t **buf){
+    uint8_t *oldTail = (*buf)->tail;
+    uint16_t items_Printed = 0;
+    uint8_t data_just_read = *oldTail;
+
+//Case 1: Tail before Head, no loop around
+    for(items_Printed=0; items_Printed < current_Circ_Buffer_Size(buf); items_Printed++ ){
+
+        //Case 2: need to figure out what happens when we loop around.
+        uint8_t data_just_read = *oldTail;
+        UART_putchar(data_just_read);
+        oldTail++;
+        }
+
+}
+
 

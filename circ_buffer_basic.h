@@ -9,7 +9,6 @@
 
 #ifndef CIRC_BUFFER_BASIC_H_
 #define CIRC_BUFFER_BASIC_H_
-
 //typedef struct{
 //    uint8_t * baseConst;                       // pointer to the base of the buffer in heap
 //    volatile uint8_t * head;                // Pointer to first item //start of buffer  // FIFO
@@ -70,5 +69,19 @@ uint8_t clear_Buffer(CircBuf_t **buf);
  * */
 uint8_t delete_Circ_Buffer(CircBuf_t **buf);
 
+
+/*Get size of the current buffer
+ * returns the size
+ * return  of -1 is an ERROR
+ * */
+uint16_t current_Circ_Buffer_Size(CircBuf_t **buf);
+
+
+/*
+ * Peek and Print
+ * Traverses and prints circular buffer (FIF0) without
+ * removing items.
+ * */
+void print_Circ_Buffer(CircBuf_t **buf);
 
 #endif /* CIRC_BUFFER_BASIC_H_ */

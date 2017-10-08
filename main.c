@@ -88,32 +88,39 @@ void main(void)
 
 while(1){
 	if(Calculate_Stats == 1){
+
+	    //Print contents of the buffer without delete
+	    print_Circ_Buffer(&myBufferPTR);
+
+
 	    uint8_t number_of_item = myBufferPTR -> num_items;
-//	     for ( i=0; i< number_of_item; i++){
-//	         data = remove_From_Buffer(&myBufferPTR);
-//	         if(64<data & data<91 | 96<data & data <123){
-//	             count_letter ++;
-//	         }
-//	             else if (47<data & data<58){
-//	                 count_number ++;
-//	             }
-//	             else if (32<data & data<35|38<data& data<42|data ==46|57<data& data<60|data == 63){
-//	                 count_puntuation ++;
-//	                 }
-//	             else if (data == 32){ ////TODO: horizontal tab too
-//	                 count_white_space ++;
-//	             }
-//	             else
-//	             {
-//	                count_other_character++;
-//	             }
-//	     }
-//	     count[0] = count_letter + Ascii_num_offset;
-//	     count[1]= count_number+ Ascii_num_offset;
-//	     count[2]= count_puntuation+ Ascii_num_offset;
-//	     count[3] = count_white_space+ Ascii_num_offset;
-//	     count[4]= count_other_character+ Ascii_num_offset;
-//
+	     for ( i=0; i< number_of_item; i++){
+
+	         data = remove_From_Buffer(&myBufferPTR); //TODO: This is why the count is going to 0.
+
+	         if((64<data && data<91 )|| (96<data && data <123)){
+	             count_letter ++;
+	         }
+	             else if (47<data && data<58){
+	                 count_number ++;
+	             }
+	             else if ((32<data && data<35 )||(38<data && data<42) || data == 46 || (57 < data && data<60) ||data == 63){
+	                 count_puntuation ++;
+	                 }
+	             else if (data == 32){ ////TODO: horizontal tab too
+	                 count_white_space ++;
+	             }
+	             else
+	             {
+	                count_other_character++;
+	             }
+	     }
+	     count[0] = count_letter + Ascii_num_offset;
+	     count[1]= count_number+ Ascii_num_offset;
+	     count[2]= count_puntuation+ Ascii_num_offset;
+	     count[3] = count_white_space+ Ascii_num_offset;
+	     count[4]= count_other_character+ Ascii_num_offset;
+
 	     uint8_t index =0;
 
 	     for(index = 0; index < 5; index++){
@@ -123,7 +130,10 @@ while(1){
 
 	     Calculate_Stats = 0;
 	}
+
+
 }
+
 
 
 

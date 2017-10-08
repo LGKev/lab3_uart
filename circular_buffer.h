@@ -72,4 +72,6 @@ uint8_t CB_add_item_to_buffer(CircBuf_t * buf, uint8_t item);
  * */
 CircBuf_t * CB_remove_item_from_buffer(CircBuf_t * buf);
 
+
+
 #endif /* CIRCULAR_BUFFER_H_ */
