@@ -25,7 +25,6 @@
 
 
   uint8_t count[5]={0,0,0,0,0};
-=======
 void create_Test_Buffer();
 
 
@@ -47,12 +46,8 @@ void main(void)
     configure_clocks(); //probably so change up
 
 
-<<<<<<< HEAD
+
     initialize_Circ_Buffer(&myBufferPTR, 15);
-=======
-    initialize_Circ_Buffer(&myBufferPTR, 20);
-    //create_Test_Buffer();
->>>>>>> 0327730c222a51ab4bdb1d0a0b20c8dcd165ac84
 
 
     __enable_irq();
