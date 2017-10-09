@@ -25,6 +25,12 @@ uint8_t zoid[17] = { 87, 104, 121, 32, 78, 111, 116, 32, 90, 111, 105, 100, 98,
 uint8_t Calculate_Stats = 0; // set to 1, either full or enter pressed.
 
 uint8_t count[5] = { 0, 0, 0, 0, 0 };
+
+uint32_t global_number_Of_Beam_Breaks;
+uint8_t Calculate_Distance =0; //flag to calculate
+float total_distance_cummulative = 0.0;
+
+
 void create_Test_Buffer();
 
 void main(void)
@@ -158,8 +164,24 @@ void main(void)
 
             Calculate_Stats = 0;
         }
-    }
 
+
+    /* calculate the distance cumulative */
+    if(Calculate_Distance == 1){
+        float new_Distance = global_number_Of_Beam_Breaks * ARC_LENGTH;
+
+        total_distance_cummulative += new_Distance;
+
+        uint8_t ascii_distance[10];
+        ftoa(total_distance_cummulative, ascii_distance, 3);
+
+        uart_putchar_n("Distance Traveled:  ", strlen("Distance Traveled:  "));
+        uart_putchar_n(ascii_distance, strlen(ascii_distance));
+        UART_putchar(13);
+
+        Calculate_Distance = 0;
+    }
+    }//end of while
 }
 
 void HSMCLK_OUT()

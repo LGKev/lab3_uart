@@ -22,6 +22,8 @@
 
 #define Ascii_num_offset          (48)
 
+#define ARC_LENGTH                  (22.5)
+
 //#define ZOIDBERG_TEST
 
 /*

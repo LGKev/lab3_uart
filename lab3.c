@@ -13,6 +13,9 @@
 
 extern CircBuf_t * myBufferPTR;
 
+extern uint32_t global_number_Of_Beam_Breaks;
+extern uint8_t Calculate_Distance;
+
 void configure_clocks(void){
     CS->KEY = 0x695A; //unlock 5.3.1
     CS->CTL0 = 0 ;
@@ -61,6 +64,16 @@ void configure_ports(void){
      P1 ->IFG &= ~BIT1;
      P1->IE |= BIT1;       //Enable interrupt for P1.1
      P1->IES |= BIT1;      //Interrupt on high to low transition
+
+/* IR Beam Break configure on pin 0 of port 3. */
+     P3->SEL0 &=~BIT0;
+     P3->SEL1 &=~BIT0;
+     P3->REN |= BIT0; //pullup
+     P3->IFG &=~BIT0;
+     P3->IE |= BIT0;
+     P3->IES |= BIT0;
+
+     NVIC_EnableIRQ(PORT3_IRQn);
      NVIC_EnableIRQ(PORT1_IRQn); // enable the interrupts for port 1
 }
 
@@ -77,6 +90,19 @@ void PORT1_IRQHandler(){
         P2OUT ^= BIT2;
     }
  }
+
+
+void PORT3_IRQHandler(){
+if(P3->IFG & BIT0){
+    P3->IFG &=~BIT0;
+
+    global_number_Of_Beam_Breaks++;
+    if(global_number_Of_Beam_Breaks %14 == 0){
+        Calculate_Distance = 1;
+    }
+}
+
+}
 
 
 static void reverse(char str[], int len)        //function to reverse string to get it readable and not backwards
