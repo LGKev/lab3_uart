@@ -37,7 +37,14 @@ void configure_clocks(void);
 void configure_ports(void);
 
 
+//Conversions
+void reverse(char str[], int len);
+int intToStr(int value, char str[], int length);
 
+
+char itoa(int value, char str[], int base);          //Integer to ASCII (should return ascii)
+
+char ftoa(float f, char str[], int point);         //Float to ASCII (should return ascii)
 
 
 #endif /* LAB3_H_ */

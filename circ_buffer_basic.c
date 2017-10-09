@@ -166,6 +166,8 @@ uint16_t currentSize(CircBuf_t **buf){
 }
 
 void print(CircBuf_t *buf){
+    if(buf->num_items ==0)return;
+
     uint8_t *oldTail = buf->tail;
     uint16_t numberPrinted =0;
     uint16_t oldTailPosition = buf->tailPosition;
@@ -193,11 +195,12 @@ void print(CircBuf_t *buf){
 void clear_Buffer(CircBuf_t ** buf){
     //check to see if valid
     uint8_t * destination = (*buf)->baseConst + ((*buf)->length) *sizeof(uint8_t);
-    if(!buf){
+
         //clear buffer
         uint8_t *clear =   (*buf)->tail;
         int i;
-        for( i=0; i<sizeof((*buf)->num_items); i++){
+        uint8_t value = (*buf)->num_items;
+        for( i=0; i<value; i++){
            *clear = 0;
            clear ++;
           if(clear== destination){
@@ -206,11 +209,10 @@ void clear_Buffer(CircBuf_t ** buf){
             }
         (*buf)->head = (*buf)->baseConst;
         (*buf)->tail = (*buf)->baseConst;
+        (*buf)->num_items =0;
         //note: we don't actually clear data, we just say that its available to be written again.
         //do not clear the buffer pointer, we will lose access to it.we are clearning not deleting
-    }
-    else{
-        //maybe log bad data, for now do nothing.
-    }
+
+
 }
 
