@@ -22,7 +22,7 @@
 
 #define Ascii_num_offset          (48)
 
-#define ZOIDBERG_TEST
+//#define ZOIDBERG_TEST
 
 /*
  * Clock DCO is being modified to be used with UART.

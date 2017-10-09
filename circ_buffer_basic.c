@@ -164,3 +164,29 @@ uint16_t currentSize(CircBuf_t **buf){
     return (*buf)->num_items;
 }
 
+void print(CircBuf_t *buf){
+    uint8_t *oldTail = buf->tail;
+    uint16_t numberPrinted =0;
+    uint16_t oldTailPosition = buf->tailPosition;
+    uint8_t dataRead;
+
+    for(numberPrinted =0; numberPrinted < buf->num_items; numberPrinted++){
+
+        dataRead = *oldTail;
+        UART_putchar(dataRead);
+        oldTail++;//move the pointer
+        oldTailPosition++;
+
+        if(oldTailPosition >= buf->length){
+            //send it back to zero.
+            oldTail = buf->baseConst;
+            oldTailPosition = 0;
+        }
+        //grab data and print it.
+
+
+    }
+
+}
+
+

@@ -83,6 +83,8 @@ void main(void)
 
 while(1){
 	if(Calculate_Stats == 1){
+	   print(myBufferPTR);
+
 	    uint8_t number_of_item = myBufferPTR -> num_items;
 	     for ( i=0; i< number_of_item; i++){
 	         data = remove_From_Buffer(&myBufferPTR);

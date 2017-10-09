@@ -78,4 +78,7 @@ uint8_t delete_Circ_Buffer(CircBuf_t **buf);
 uint16_t currentSize(CircBuf_t **buf);
 
 
+void print(CircBuf_t *buf);
+
+
 #endif /* CIRC_BUFFER_BASIC_H_ */
