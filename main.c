@@ -168,7 +168,8 @@ void main(void)
 
     /* calculate the distance cumulative */
     if(Calculate_Distance == 1){
-        float new_Distance = global_number_Of_Beam_Breaks * ARC_LENGTH;
+        float new_Distance = global_number_Of_Beam_Breaks * ARC_LENGTH /1000.0;
+
 
         total_distance_cummulative += new_Distance;
 
@@ -177,9 +178,11 @@ void main(void)
 
         uart_putchar_n("Distance Traveled:  ", strlen("Distance Traveled:  "));
         uart_putchar_n(ascii_distance, strlen(ascii_distance));
+        uart_putchar_n(" meters", strlen(" meters"));
         UART_putchar(13);
 
         Calculate_Distance = 0;
+        global_number_Of_Beam_Breaks = 0;
     }
     }//end of while
 }
