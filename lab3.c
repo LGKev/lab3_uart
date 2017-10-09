@@ -8,6 +8,10 @@
 
 #include "msp.h"
 #include <stdint.h>
+#include "uart.h"
+#include "circ_buffer_basic.h"
+
+extern CircBuf_t * myBufferPTR;
 
 void configure_clocks(void){
     CS->KEY = 0x695A; //unlock 5.3.1
@@ -39,3 +43,37 @@ void configure_clocks(void){
 
     CS->KEY = 0; //lock
 }
+
+void configure_ports(void){
+     P1->SEL0 &= ~BIT4;    //
+     P1->SEL1 &= ~BIT4;    //General I/O is enable for P1.4
+     P1->OUT |= BIT4;      //enable the pull up register
+     P1->DIR &= ~BIT4;     //p1.4 to be input
+     P1->REN |= BIT4;      //Enable pull-up resistor for P1.4
+     P1 ->IFG &= ~BIT4;
+     P1->IE |= BIT4;       //Enable interrupt for P1.4
+     P1->IES |= BIT4;      //Interrupt on high to low transition
+     P1->SEL0 &= ~BIT1;    //
+     P1->SEL1 &= ~BIT1;    //General I/O is enable for P1.1
+     P1->OUT |= BIT1;      //enable the pull up register
+     P1->DIR &= ~BIT1;     //p1.1 to be input
+     P1->REN |= BIT1;      //Enable pull-up resistor for P1.1
+     P1 ->IFG &= ~BIT1;
+     P1->IE |= BIT1;       //Enable interrupt for P1.1
+     P1->IES |= BIT1;      //Interrupt on high to low transition
+     NVIC_EnableIRQ(PORT1_IRQn); // enable the interrupts for port 1
+}
+
+void PORT1_IRQHandler(){
+    int delay;
+    for(delay = 0; delay < 200; delay ++ ){}
+    if (P1->IFG & BIT1  ){
+        P1 -> IFG &=~ BIT1;
+        clear_Buffer(&myBufferPTR);
+    }
+     if(P1->IFG & BIT4){
+        P1 ->IFG &=~BIT4;
+        print(myBufferPTR);
+        P2OUT ^= BIT2;
+    }
+ }

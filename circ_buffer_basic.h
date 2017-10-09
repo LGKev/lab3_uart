@@ -63,7 +63,7 @@ int8_t is_Circ_Buf_Empty(CircBuf_t **buf);
  *      Sets all pointers to have the value 0;
  *      Sets number_of_items = 0;
  * */
-uint8_t clear_Buffer(CircBuf_t **buf);
+void clear_Buffer(CircBuf_t **buf);
 
 /*
  * Delete memory allocated with Free
@@ -79,6 +79,8 @@ uint16_t currentSize(CircBuf_t **buf);
 
 
 void print(CircBuf_t *buf);
+
+
 
 
 #endif /* CIRC_BUFFER_BASIC_H_ */

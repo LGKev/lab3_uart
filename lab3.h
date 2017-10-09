@@ -31,6 +31,10 @@
  * */
 void configure_clocks(void);
 
+/* Sets up the interrupt and buttons 1 and 4 of port 1.
+ * TODO: set up interrupt for IR beam break.
+ * */
+void configure_ports(void);
 
 
 
