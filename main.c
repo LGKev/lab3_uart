@@ -74,14 +74,8 @@ void main(void)
 #ifdef ZOIDBERG_TEST
 	uint8_t letter = 0;
 	while(1){
-
-
-        UART_putchar(67);
-        UART_putchar(69);
-//        UART_putchar(101);
-
-
-
+	    uart_putchar_n("Why Not ZoidBerg", 17);
+	    UART_putchar(13);
 	}
 #endif
 
