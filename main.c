@@ -50,29 +50,33 @@ void main(void)
     P2DIR |= BLUE_LED; //output
     P2OUT &= ~BLUE_LED;
 
-#ifdef UART_TX_TEST
-    uint8_t letter = 0;
-    while(1)
-    {
-        for(letter = 30; letter < 122; letter++)
-        {
-            UART_putchar(letter);
-            UART_putchar(32); //space
-        }
 
-    }
-#endif
-
+//
+//#ifdef UART_TX_TEST
+//    uint8_t letter = 0;
+//    while(1)
+//    {
+//        for(letter = 30; letter < 122; letter++)
+//        {
+//            UART_putchar(letter);
+//            UART_putchar(32); //space
+//        }
+//
+//    }
+//#endif
+//
 #ifdef ZOIDBERG_TEST
     uint8_t letter = 0;
     while(1)
     {
         uart_putchar_n("Why Not ZoidBerg", 17);
         UART_putchar(13);
+        uart_putchar_n("woop wooop wooop woop woop", strlen("woop wooop wooop woop woop"));
+        UART_putchar(13);
     }
 #endif
-
-    /*stats*/
+//
+//    /*stats*/
 
     while (1)
     {
@@ -89,6 +93,9 @@ void main(void)
 
             print(myBufferPTR);
             UART_putchar(13);
+
+            uint8_t ascii_number_Of_items[10];
+            itoa((myBufferPTR->num_items), ascii_number_Of_items, 10);
 
             uint8_t number_of_item = myBufferPTR->num_items;
             for (i = 0; i < number_of_item; i++)
@@ -130,12 +137,18 @@ void main(void)
             uint8_t ascii_space[10];
             uint8_t ascii_other[10];
 
+
+
             itoa(count_letter, ascii_letter, 10);
             itoa(count_number, ascii_number, 10);
             itoa(count_puntuation, ascii_punctuation, 10);
             itoa(count_white_space, ascii_space, 10);
             itoa(count_other_character, ascii_other, 10);
 
+
+            uart_putchar_n("Number of Items in Buffer: ", strlen("Number of Items in Buffer: "));
+            uart_putchar_n(ascii_number_Of_items, strlen(ascii_number_Of_items));
+            UART_putchar(13);
             uart_putchar_n("Number of Letters:  ", strlen("Number of Letters:  "));
             uart_putchar_n(ascii_letter, strlen(ascii_letter)); //letter
             UART_putchar(13);
